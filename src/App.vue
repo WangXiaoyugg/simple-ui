@@ -1,6 +1,11 @@
 <template>
-  <div>HI</div>
-  <Garen />
+  <div>
+    导航栏 |
+    <router-link to="/">Garen</router-link>|
+    <router-link to="/xxx">Garen2</router-link>
+  </div>
+  <hr />
+  <router-view></router-view>
 </template>
 
 <script>
