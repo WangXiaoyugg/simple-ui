@@ -12,7 +12,8 @@ export default {
     Garen
   },
   setup() {
-    const asideVisible = ref(false);
+    const documentWidth = document.documentElement.clientWidth;
+    const asideVisible = ref(documentWidth < 500 ? false : true);
     provide("asideVisible", asideVisible);
   }
 };
