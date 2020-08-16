@@ -1,3 +1,3 @@
 <template>
-  <div>Dialog Demo</div>
+  <div>Dialog 示例</div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-  <div>Tabs Demo</div>
+  <div>Tabs 示例</div>
 </template>
