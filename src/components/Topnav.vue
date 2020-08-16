@@ -44,7 +44,8 @@ export default {
   background: pink;
   display: flex;
   padding: 16px;
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 10;
   justify-content: center;
   align-items: center;
