@@ -12,7 +12,7 @@ export default {
   },
   setup(props, context) {
     const toggle = () => {
-      context.emit("input", !props.value);
+      context.emit("update:value", !props.value);
     };
     return { toggle };
   }
@@ -26,27 +26,36 @@ button {
   height: $h;
   width: $h * 2;
   border: none;
-  background: #eee;
+  background: #dddfe5;
   border-radius: $h / 2;
   position: relative;
-}
-span {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  height: $h2;
-  width: $h2;
-  background: #fff;
-  border-radius: $h / 2;
-  transition: left 0.25s;
-}
-button.checked {
-  background: skyblue;
-}
-button.checked > span {
-  left: calc(100% - #{$h2} - 2px);
-}
-button:focus {
-  outline: none;
+  > span {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: $h2;
+    width: $h2;
+    background: #fff;
+    border-radius: $h / 2;
+    transition: left 0.25s;
+  }
+  &.checked {
+    background: #5a9df8;
+    > span {
+      left: calc(100% - #{$h2} - 2px);
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active > span {
+    width: $h2 + 4px;
+  }
+  &.checked:active {
+    > span {
+      width: $h2 + 4px;
+      margin-left: -4px;
+    }
+  }
 }
 </style>
