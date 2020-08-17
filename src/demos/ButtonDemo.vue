@@ -2,52 +2,52 @@
   <div>Button 示例</div>
   <section>
     <h2>示例1</h2>
-    <Button @click="onClick">你好</Button>
-    <Button theme="button">你好</Button>
-    <Button theme="link">你好</Button>
-    <Button theme="text">你好</Button>
+    <Button @click="onClick">普通</Button>
+    <Button theme="button">按钮</Button>
+    <Button theme="link">链接</Button>
+    <Button theme="text">文本</Button>
   </section>
   <section>
     <h2>示例2</h2>
     <div>
-      <Button>你好</Button>
-      <Button size="big">你好</Button>
-      <Button size="small">你好</Button>
+      <Button>普通</Button>
+      <Button size="big">大按钮</Button>
+      <Button size="small">小按钮</Button>
     </div>
     <div>
-      <Button theme="link">你好</Button>
-      <Button size="big" theme="link">你好</Button>
-      <Button size="small" theme="link">你好</Button>
+      <Button theme="link">链接</Button>
+      <Button size="big" theme="link">大链接</Button>
+      <Button size="small" theme="link">小链接</Button>
     </div>
     <div>
-      <Button theme="text">你好</Button>
-      <Button size="big" theme="text">你好</Button>
-      <Button size="small" theme="text">你好</Button>
+      <Button theme="text">文本</Button>
+      <Button size="big" theme="text">大文本</Button>
+      <Button size="small" theme="text">小文本</Button>
     </div>
   </section>
   <section>
     <h2>示例3</h2>
     <div>
-      <Button>你好</Button>
-      <Button size="big" level="main">你好</Button>
-      <Button size="small" level="danger">你好</Button>
+      <Button>普通</Button>
+      <Button size="big" level="main">主要</Button>
+      <Button size="small" level="danger">危险</Button>
     </div>
     <div>
-      <Button theme="link">你好</Button>
-      <Button size="big" theme="link" level="main">你好</Button>
-      <Button size="small" theme="link" level="danger">你好</Button>
+      <Button theme="link">链接</Button>
+      <Button size="big" theme="link" level="main">主要</Button>
+      <Button size="small" theme="link" level="danger">危险</Button>
     </div>
     <div>
-      <Button theme="text">你好</Button>
-      <Button size="big" theme="text" level="main">你好</Button>
-      <Button size="small" theme="text" level="danger">你好</Button>
+      <Button theme="text">文本</Button>
+      <Button size="big" theme="text" level="main">主要</Button>
+      <Button size="small" theme="text" level="danger">危险</Button>
     </div>
   </section>
   <section>
     <h2>示例4</h2>
-    <Button disabled @click="onClick">你好</Button>
-    <Button theme="link" :disabled>你好</Button>
-    <Button theme="text" :disabled>你好</Button>
+    <Button disabled @click="onClick">禁用</Button>
+    <Button theme="link" :disabled="true">禁用</Button>
+    <Button theme="text" disabled>禁用</Button>
   </section>
   <section>
     <h2>示例5</h2>
@@ -71,3 +71,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+}
+</style>
