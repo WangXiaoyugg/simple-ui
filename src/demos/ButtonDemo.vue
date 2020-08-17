@@ -2,7 +2,10 @@
   <div>Button 示例</div>
   <section>
     <h2>示例1</h2>
-    <Button @click="onClick" @focus="onClick" @mouseover="onClick" size="large">你好</Button>
+    <Button>你好</Button>
+    <Button theme="button">你好</Button>
+    <Button theme="link">你好</Button>
+    <Button theme="text">你好</Button>
   </section>
 </template>
 
