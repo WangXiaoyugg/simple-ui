@@ -1,3 +1,4 @@
+import "./lib/simple.scss"
 import './index.scss'
 
 import { createApp } from 'vue'
