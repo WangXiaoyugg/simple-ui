@@ -2,7 +2,7 @@
   <div>Button 示例</div>
   <section>
     <h2>示例1</h2>
-    <Button>你好</Button>
+    <Button @click="onClick">你好</Button>
     <Button theme="button">你好</Button>
     <Button theme="link">你好</Button>
     <Button theme="text">你好</Button>
@@ -45,7 +45,7 @@
   </section>
   <section>
     <h2>示例4</h2>
-    <Button disabled>你好</Button>
+    <Button disabled @click="onClick">你好</Button>
     <Button theme="link" :disabled>你好</Button>
     <Button theme="text" :disabled>你好</Button>
   </section>
