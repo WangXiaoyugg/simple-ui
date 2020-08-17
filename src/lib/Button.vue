@@ -1,5 +1,5 @@
 <template>
-  <button class="simple-btn" :class="classes">
+  <button class="simple-btn" :class="classes" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -19,6 +19,9 @@ export default {
     level: {
       type: String,
       default: "normal"
+    },
+    disabled: {
+      type: Boolean
     }
   },
   setup(props, context) {
@@ -42,6 +45,7 @@ $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
 $red: #ff4d4f;
+$grey: rgba(0, 0, 0, 0.25);
 .simple-btn {
   box-sizing: border-box;
   height: $h;
@@ -165,6 +169,23 @@ $red: #ff4d4f;
       &:focus {
         color: darken($red, 0.1);
       }
+    }
+  }
+
+  &.simple-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+  &.simple-theme-link,
+  &.simple-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
     }
   }
 }

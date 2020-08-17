@@ -43,6 +43,12 @@
       <Button size="small" theme="text" level="danger">你好</Button>
     </div>
   </section>
+  <section>
+    <h2>示例4</h2>
+    <Button disabled>你好</Button>
+    <Button theme="link" :disabled>你好</Button>
+    <Button theme="text" :disabled>你好</Button>
+  </section>
 </template>
 
 <script lang="ts">
