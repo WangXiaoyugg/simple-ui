@@ -49,6 +49,12 @@
     <Button theme="link" :disabled>你好</Button>
     <Button theme="text" :disabled>你好</Button>
   </section>
+  <section>
+    <h2>示例5</h2>
+    <Button loading size="big">加载中</Button>
+    <Button :loading="true" size="small">加载中</Button>
+    <Button loading>加载中</Button>
+  </section>
 </template>
 
 <script lang="ts">

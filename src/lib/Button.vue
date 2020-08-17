@@ -1,5 +1,6 @@
 <template>
   <button class="simple-btn" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="simple-loading-indicator"></span>
     <slot />
   </button>
 </template>
@@ -21,6 +22,9 @@ export default {
       default: "normal"
     },
     disabled: {
+      type: Boolean
+    },
+    loading: {
       type: Boolean
     }
   },
@@ -115,12 +119,22 @@ $grey: rgba(0, 0, 0, 0.25);
     padding: 8px 16px;
     font-size: 24px;
     border-radius: 2px;
+    > .simple-loading-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+    }
   }
   &.simple-small {
     height: 24px;
     padding: 0 4px;
     font-size: 14px;
     border-radius: 2px;
+    > .simple-loading-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+    }
   }
 
   &.simple-theme-button {
@@ -186,6 +200,27 @@ $grey: rgba(0, 0, 0, 0.25);
     &[disabled] {
       cursor: not-allowed;
       color: $grey;
+    }
+  }
+
+  > .simple-loading-indicator {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $blue $blue $blue transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: simple-spin 1s infinite linear;
+  }
+
+  @keyframes simple-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }
