@@ -1,18 +1,37 @@
 <template>
-  <button class="simple-btn" :class="`simple-theme-${theme}`">
+  <button class="simple-btn" :class="classes">
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { computed } from "vue";
 export default {
   props: {
     theme: {
       type: String,
       default: "button"
+    },
+    size: {
+      type: String,
+      default: "normal"
+    },
+    level: {
+      type: String,
+      default: "normal"
     }
   },
-  setup(props, context) {}
+  setup(props, context) {
+    const { theme, size, level } = props;
+    const classes = computed(() => {
+      return {
+        [`simple-theme-${theme}`]: theme,
+        [`simple-${size}`]: size,
+        [`simple-level-${level}`]: level
+      };
+    });
+    return { classes };
+  }
 };
 </script>
 
@@ -22,6 +41,7 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
+$red: #ff4d4f;
 .simple-btn {
   box-sizing: border-box;
   height: $h;
@@ -50,6 +70,102 @@ $radius: 4px;
   }
   &::-moz-focus-inner {
     border: 0;
+  }
+  &.simple-theme-link {
+    border-color: transparent;
+    box-shadow: none;
+    color: $blue;
+    background: none;
+    &:hover,
+    &:focus {
+      color: lighten($blue, 0.1);
+    }
+  }
+  &.simple-theme-text {
+    border-color: transparent;
+    box-shadow: none;
+    color: inherit;
+    background: none;
+    &:hover,
+    &:focus {
+      color: darken(white, 0.05);
+    }
+  }
+  &.simple-theme-button {
+    &.simple-big {
+      height: 40px;
+      padding: 8px 16px;
+      font-size: 24px;
+      border-radius: 2px;
+    }
+    &.simple-small {
+      height: 24px;
+      padding: 0 4px;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+  }
+
+  &.simple-big {
+    height: 40px;
+    padding: 8px 16px;
+    font-size: 24px;
+    border-radius: 2px;
+  }
+  &.simple-small {
+    height: 24px;
+    padding: 0 4px;
+    font-size: 14px;
+    border-radius: 2px;
+  }
+
+  &.simple-theme-button {
+    &.simple-level-main {
+      background: $blue;
+      color: white;
+      border-color: $blue;
+      &:hover,
+      &:focus {
+        background: darken($blue, 0.1);
+        border-color: darken($blue, 0.1);
+      }
+    }
+    &.simple-level-danger {
+      background: $red;
+      border-color: $red;
+      color: #fff;
+      &:focus,
+      &:hover {
+        background: darken($red, 0.1);
+        border-color: darken($red, 0.1);
+      }
+    }
+  }
+
+  &.simple-theme-text {
+    &.simple-level-main {
+      color: $blue;
+      &:hover,
+      &:focus {
+        border-color: darken($blue, 0.1);
+      }
+    }
+    &.simple-level-danger {
+      color: $red;
+      &:focus,
+      &:hover {
+        color: darken($red, 0.1);
+      }
+    }
+  }
+  &.simple-theme-link {
+    &.simple-level-danger {
+      color: $red;
+      &:hover,
+      &:focus {
+        color: darken($red, 0.1);
+      }
+    }
   }
 }
 </style>
