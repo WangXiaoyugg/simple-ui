@@ -40,5 +40,6 @@ npm run dev
 ```
 
 ## Components
-- [x] Button
-- [x] Switch
+- [x] Button ✅
+- [x] Switch ✅
+- [x] Dialog ✅
