@@ -6,6 +6,7 @@ import SwitchDemo from './demos/SwitchDemo.vue'
 import ButtonDemo from './demos/ButtonDemo.vue'
 import DialogDemo from './demos/DialogDemo.vue'
 import TabsDemo from './demos/TabsDemo.vue'
+import RowAndColDemo from './demos/RowAndColDemo.vue'
 
 
 const history = createWebHashHistory()
@@ -20,6 +21,7 @@ export const router = createRouter({
         { path: 'button', component: ButtonDemo },
         { path: 'dialog', component: DialogDemo },
         { path: 'tabs', component: TabsDemo },
+        { path: 'grid', component: RowAndColDemo },
       ]
     },
   ]
