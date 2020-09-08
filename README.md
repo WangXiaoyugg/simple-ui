@@ -43,3 +43,7 @@ npm run dev
 - [x] Button ✅
 - [x] Switch ✅
 - [x] Dialog ✅
+- [x] Tabs/Tab ✅
+- [x] Row/Col ✅
+- [x] Layout/Header/Aside/Content/Footer ✅
+
