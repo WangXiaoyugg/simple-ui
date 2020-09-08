@@ -20,6 +20,9 @@
           <li>
             <router-link to="/doc/grid">栅格布局</router-link>
           </li>
+          <li>
+            <router-link to="/doc/layout">容器组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>
