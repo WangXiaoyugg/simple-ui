@@ -4,45 +4,45 @@
     <section>
       <h2>示例1</h2>
       <s-layout>
-        <s-header class="box">Header</s-header>
-        <s-content class="box">Content</s-content>
-        <s-footer class="box">Footer</s-footer>
+        <s-header>Header</s-header>
+        <s-content>Content</s-content>
+        <s-footer>Footer</s-footer>
       </s-layout>
     </section>
 
     <section>
       <h2>示例2</h2>
       <s-layout>
-        <s-header class="box">Header</s-header>
+        <s-header height="80px">Header</s-header>
         <s-layout>
-          <s-aside class="box">Aside</s-aside>
-          <s-content class="box">Content</s-content>
+          <s-aside width="200px">Aside</s-aside>
+          <s-content>Content</s-content>
         </s-layout>
-        <s-footer class="box">Footer</s-footer>
+        <s-footer>Footer</s-footer>
       </s-layout>
     </section>
 
     <section>
       <h2>示例3</h2>
       <s-layout>
-        <s-header class="box">Header</s-header>
+        <s-header height="80px">Header</s-header>
         <s-layout>
-          <s-content class="box">Content</s-content>
-          <s-aside class="box">Aside</s-aside>
+          <s-content>Content</s-content>
+          <s-aside width="200px">Aside</s-aside>
         </s-layout>
-        <s-footer class="box">Footer</s-footer>
+        <s-footer>Footer</s-footer>
       </s-layout>
     </section>
 
     <section>
       <h2>示例4</h2>
       <s-layout>
-        <s-aside class="box">Aside</s-aside>
+        <s-aside width="200px">Aside</s-aside>
 
         <s-layout>
-          <s-header class="box">Header</s-header>
-          <s-content class="box">Content</s-content>
-          <s-footer class="box">Footer</s-footer>
+          <s-header height="80px">Header</s-header>
+          <s-content>Content</s-content>
+          <s-footer>Footer</s-footer>
         </s-layout>
       </s-layout>
     </section>
@@ -69,9 +69,8 @@ export default {
 <style lang="scss" scoped>
 section {
   margin-bottom: 20px;
-}
-.box {
-  border: 1px solid #666;
-  min-height: 100px;
+  div {
+    text-align: center;
+  }
 }
 </style>
