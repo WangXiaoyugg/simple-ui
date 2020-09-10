@@ -1,12 +1,12 @@
 <template>
-  <div class="simple-popover" ref="popoverWrapper" @click="onPopoverClick">
+  <div class="simple-popover" ref="popoverWrapper">
     <div
       class="content-wrapper"
       :class="{[`position-${position}`]:true}"
       ref="contentWrapper"
       v-if="visible"
     >
-      <slot name="content"></slot>
+      <slot name="content" :close="close"></slot>
     </div>
     <span ref="triggerWrapper" class="trigger-wrapper">
       <slot></slot>
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { ref, nextTick } from "vue";
+import { ref, nextTick, onMounted, onUnmounted } from "vue";
 
 export default {
   name: "SimplePopover",
@@ -26,6 +26,13 @@ export default {
       validator(value) {
         return ["top", "bottom", "left", "right"].includes(value);
       }
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      validator(value) {
+        return ["click", "hover"].includes(value);
+      }
     }
   },
   setup(props, context) {
@@ -33,6 +40,7 @@ export default {
     let triggerWrapper = ref<HTMLDivElement>(null);
     let popoverWrapper = ref<HTMLDivElement>(null);
     let visible = ref(false);
+    let { trigger } = props;
 
     let open = () => {
       visible.value = true;
@@ -106,12 +114,31 @@ export default {
       }
     };
 
+    onMounted(() => {
+      if (trigger === "click") {
+        popoverWrapper.value.addEventListener("click", onPopoverClick);
+      } else if (trigger === "hover") {
+        console.log("hover");
+        popoverWrapper.value.addEventListener("mouseenter", open);
+        popoverWrapper.value.addEventListener("mouseleave", close);
+      }
+    });
+    onUnmounted(() => {
+      if (trigger === "click") {
+        popoverWrapper.value.removeEventListener("click", onPopoverClick);
+      } else if (trigger === "hover") {
+        console.log("hover");
+        popoverWrapper.value.removeEventListener("mouseenter", open);
+        popoverWrapper.value.removeEventListener("mouseleave", close);
+      }
+    });
+
     return {
       visible,
-      onPopoverClick,
       contentWrapper,
       triggerWrapper,
-      popoverWrapper
+      popoverWrapper,
+      close
     };
   }
 };
@@ -159,10 +186,12 @@ $border-radius: 4px;
     }
     &::before {
       border-top-color: black;
+      border-bottom: none;
       top: 100%;
     }
     &::after {
       border-top-color: white;
+      border-bottom: none;
       top: calc(100% - 1px);
     }
   }
@@ -174,10 +203,12 @@ $border-radius: 4px;
     }
     &::before {
       border-bottom-color: black;
+      border-top: none;
       bottom: 100%;
     }
     &::after {
       border-bottom-color: white;
+      border-top: none;
       bottom: calc(100% - 1px);
     }
   }
@@ -192,10 +223,12 @@ $border-radius: 4px;
     }
     &::before {
       border-left-color: black;
+      border-right: none;
       left: 100%;
     }
     &::after {
       border-left-color: white;
+      border-right: none;
       left: calc(100% - 1px);
     }
   }
@@ -209,10 +242,12 @@ $border-radius: 4px;
     }
     &::before {
       border-right-color: black;
+      border-left: none;
       right: 100%;
     }
     &::after {
       border-right-color: white;
+      border-left: none;
       right: calc(100% - 1px);
     }
   }

@@ -3,29 +3,43 @@
   <section>
     <h2>示例1</h2>
     <Popover>
-      <template v-slot:content>Hello Popover</template>
+      <template v-slot:content="{close}">
+        <div>Hello Popover</div>
+        <Button @click="close">关闭</Button>
+      </template>
       <Button>上</Button>
     </Popover>
-  </section>
-  <section>
-    <h2>示例2</h2>
     <Popover position="bottom">
       <template v-slot:content>Hello Popover</template>
       <Button>下</Button>
     </Popover>
-  </section>
-  <section>
-    <h2>示例3</h2>
     <Popover position="left">
       <template v-slot:content>Hello Popover</template>
       <Button>左</Button>
     </Popover>
-  </section>
-  <section>
-    <h2>示例4</h2>
     <Popover position="right">
       <template v-slot:content>Hello Popover</template>
       <Button>右</Button>
+    </Popover>
+  </section>
+
+  <section>
+    <h2>示例2</h2>
+    <Popover position="left" trigger="hover">
+      <template v-slot:content>Hello Popover</template>
+      <Button>左</Button>
+    </Popover>
+    <Popover position="right" trigger="hover">
+      <template v-slot:content>Hello Popover</template>
+      <Button>右</Button>
+    </Popover>
+    <Popover position="top" trigger="hover">
+      <template v-slot:content>Hello Popover</template>
+      <Button>上</Button>
+    </Popover>
+    <Popover position="bottom" trigger="hover">
+      <template v-slot:content>Hello Popover</template>
+      <Button>下</Button>
     </Popover>
   </section>
 </template>
@@ -48,9 +62,8 @@ section {
   > h2 {
     margin-bottom: 20px;
   }
-  .gap {
-    display: inline-block;
-    width: 10px;
+  .simple-btn {
+    margin: 0 4px;
   }
 }
 </style>
