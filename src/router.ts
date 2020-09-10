@@ -8,6 +8,7 @@ import DialogDemo from './demos/DialogDemo.vue'
 import TabsDemo from './demos/TabsDemo.vue'
 import RowAndColDemo from './demos/RowAndColDemo.vue'
 import LayoutDemo from './demos/LayoutDemo.vue'
+import PopoverDemo from './demos/PopoverDemo.vue'
 
 
 const history = createWebHashHistory()
@@ -24,6 +25,7 @@ export const router = createRouter({
         { path: 'tabs', component: TabsDemo },
         { path: 'grid', component: RowAndColDemo },
         { path: 'layout', component: LayoutDemo },
+        { path: 'popover', component: PopoverDemo },
       ]
     },
   ]

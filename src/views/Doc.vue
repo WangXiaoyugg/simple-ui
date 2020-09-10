@@ -23,6 +23,9 @@
           <li>
             <router-link to="/doc/layout">容器组件</router-link>
           </li>
+          <li>
+            <router-link to="/doc/popover">Popover组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>
