@@ -2,24 +2,41 @@
   <h1>popover 示例</h1>
   <section>
     <h2>示例1</h2>
-    <div style="overflow:hidden; padding: 10px; border: 1px solid green;">
-      <Popover>
-        <template v-slot:content>Hello Popover</template>
-        <button>点我</button>
-      </Popover>
-      <Popover>
-        <template v-slot:content>Hello Popover</template>
-        <button>点我</button>
-      </Popover>
-    </div>
+    <Popover>
+      <template v-slot:content>Hello Popover</template>
+      <Button>上</Button>
+    </Popover>
+  </section>
+  <section>
+    <h2>示例2</h2>
+    <Popover position="bottom">
+      <template v-slot:content>Hello Popover</template>
+      <Button>下</Button>
+    </Popover>
+  </section>
+  <section>
+    <h2>示例3</h2>
+    <Popover position="left">
+      <template v-slot:content>Hello Popover</template>
+      <Button>左</Button>
+    </Popover>
+  </section>
+  <section>
+    <h2>示例4</h2>
+    <Popover position="right">
+      <template v-slot:content>Hello Popover</template>
+      <Button>右</Button>
+    </Popover>
   </section>
 </template>
 
 <script lang="ts">
 import Popover from "../lib/Popover.vue";
+import Button from "../lib/Button.vue";
 export default {
   components: {
-    Popover
+    Popover,
+    Button
   }
 };
 </script>
@@ -30,6 +47,10 @@ section {
   margin: 20px 0;
   > h2 {
     margin-bottom: 20px;
+  }
+  .gap {
+    display: inline-block;
+    width: 10px;
   }
 }
 </style>
