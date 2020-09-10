@@ -56,34 +56,40 @@ export default {
         height
       } = triggerWrapper.value.getBoundingClientRect();
       let { height: height2 } = contentWrapper.value.getBoundingClientRect();
+      let positions = {
+        top: {
+          top: top + window.scrollY,
+          left: left + window.scrollX
+        },
+        bottom: {
+          top: top + height + window.scrollY,
+          left: left + window.scrollX
+        },
+        left: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: left + window.scrollX
+        },
+        right: {
+          top: top + (height - height2) / 2 + window.scrollY,
+          left: left + width + window.scrollX
+        }
+      };
 
-      if (position === "top") {
-        contentWrapper.value.style.top = top + window.scrollY + "px";
-        contentWrapper.value.style.left = left + window.scrollX + "px";
-      } else if (position === "bottom") {
-        contentWrapper.value.style.top = top + height + window.scrollY + "px";
-        contentWrapper.value.style.left = left + window.scrollX + "px";
-      } else if (position === "left") {
-        contentWrapper.value.style.top =
-          top + (height - height2) / 2 + window.scrollY + "px";
-        contentWrapper.value.style.left = left + window.scrollX + "px";
-      } else if (position === "right") {
-        contentWrapper.value.style.top =
-          top + (height - height2) / 2 + window.scrollY + "px";
-        contentWrapper.value.style.left = left + width + window.scrollX + "px";
-      }
+      contentWrapper.value.style.top = positions[position].top + "px";
+      contentWrapper.value.style.left = positions[position].left + "px";
     };
 
     let onClickDocument = e => {
       if (
-        (popoverWrapper && popoverWrapper.value.contains(e.target)) ||
-        popoverWrapper.value === e.target
+        popoverWrapper &&
+        (popoverWrapper.value.contains(e.target) ||
+          popoverWrapper.value === e.target)
       ) {
         return;
       }
       if (
-        (contentWrapper && contentWrapper.value.contains(e.target)) ||
-        contentWrapper === e.target
+        contentWrapper &&
+        (contentWrapper.value.contains(e.target) || contentWrapper === e.target)
       ) {
         return;
       }
