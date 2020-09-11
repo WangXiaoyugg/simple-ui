@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { ref, inject } from "vue";
+import { ref, inject, onMounted } from "vue";
 import { Emitter } from "mitt";
 export default {
   name: "CollapseItem",
@@ -16,29 +16,32 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   },
   setup(props, context) {
-    let open = ref(false);
+    let open = ref<Boolean>(false);
     let eventBus = inject<Emitter>("eventBus");
-
-    eventBus &&
-      eventBus.on("update:selected", vm => {
-        if (vm !== context) {
-          close();
-        }
-      });
-
-    let close = () => {
-      open.value = false;
-    };
+    onMounted(() => {
+      eventBus &&
+        eventBus.on("update:selected", names => {
+          console.log("names", names);
+          if (names.includes(props.name)) {
+            open.value = true;
+          } else {
+            open.value = false;
+          }
+        });
+    });
 
     let toggle = () => {
       if (open.value) {
-        open.value = false;
+        eventBus && eventBus.emit("update:removeSelected", props.name);
       } else {
-        open.value = true;
-        eventBus && eventBus.emit("update:selected", context);
+        eventBus && eventBus.emit("update:addSelected", props.name);
       }
     };
     return {
@@ -62,6 +65,7 @@ $border-radius: 4px;
     margin-top: -1px;
     margin-left: -1px;
     margin-right: -1px;
+    cursor: pointer;
   }
   &:first-child {
     > .title {
