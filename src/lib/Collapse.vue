@@ -4,10 +4,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { provide } from "vue";
+import mitt from "mitt";
 export default {
   name: "Collapse",
-  setup() {
+  props: {
+    single: {
+      type: Boolean,
+      default: false
+    }
+  },
+  setup(props, context) {
+    let eventBus = mitt();
+    if (props.single) {
+      provide("eventBus", eventBus);
+    }
     return {};
   }
 };

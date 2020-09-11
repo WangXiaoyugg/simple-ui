@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
+import { Emitter } from "mitt";
 export default {
   name: "CollapseItem",
   props: {
@@ -19,8 +20,26 @@ export default {
   },
   setup(props, context) {
     let open = ref(false);
+    let eventBus = inject<Emitter>("eventBus");
+
+    eventBus &&
+      eventBus.on("update:selected", vm => {
+        if (vm !== context) {
+          close();
+        }
+      });
+
+    let close = () => {
+      open.value = false;
+    };
+
     let toggle = () => {
-      open.value = !open.value;
+      if (open.value) {
+        open.value = false;
+      } else {
+        open.value = true;
+        eventBus && eventBus.emit("update:selected", context);
+      }
     };
     return {
       open,
