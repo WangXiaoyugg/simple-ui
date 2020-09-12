@@ -2,7 +2,7 @@
   <h1>Cascader示例</h1>
   <section>
     <h2>示例1</h2>
-    <Cascader :dataSource="dataSource"></Cascader>
+    <Cascader :dataSource="dataSource" popoverHeight="200px"></Cascader>
   </section>
 </template>
 
@@ -27,6 +27,12 @@ export default {
         children: [
           { name: "南京", children: [{ name: "玄武" }, { name: "青浦" }] },
           { name: "苏州", children: [{ name: "姑苏" }, { name: "昆山" }] }
+        ]
+      },
+      {
+        name: "浙江",
+        children: [
+          { name: "杭州", children: [{ name: "西湖" }, { name: "萧山" }] }
         ]
       }
     ]);
