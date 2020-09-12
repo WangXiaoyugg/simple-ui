@@ -10,6 +10,7 @@ import RowAndColDemo from './demos/RowAndColDemo.vue'
 import LayoutDemo from './demos/LayoutDemo.vue'
 import PopoverDemo from './demos/PopoverDemo.vue'
 import CollapseDemo from './demos/CollapseDemo.vue'
+import CascaderDemo from './demos/CascaderDemo.vue'
 
 
 
@@ -29,7 +30,7 @@ export const router = createRouter({
         { path: 'layout', component: LayoutDemo },
         { path: 'popover', component: PopoverDemo },
         { path: 'collapse', component: CollapseDemo },
-
+        { path: 'cascader', component: CascaderDemo },
       ]
     },
   ]
