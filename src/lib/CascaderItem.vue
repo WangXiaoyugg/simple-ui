@@ -27,6 +27,7 @@
         :height="height"
         :selected="selected"
         :level="level+1"
+        :loadData="loadData"
         @update:selected="updateSelected"
       ></cascader-item>
     </div>
@@ -83,6 +84,7 @@ export default {
       context.emit("update:selected", newSelected);
     };
     const rightArrowVisible = item => {
+      console.log("loadData", props.loadData);
       return props.loadData ? !item.isLeaf : item.children;
     };
 

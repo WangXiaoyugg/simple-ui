@@ -75,8 +75,9 @@ export default {
           }
         }
       };
+
       let updateSource = result => {
-        console.log("result:", result, lastItem.id);
+        console.log("result:", result);
         let copy = JSON.parse(JSON.stringify(props.dataSource));
         let toUpdate = complex(copy, lastItem.id);
         toUpdate.children = result;
