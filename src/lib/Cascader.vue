@@ -38,7 +38,6 @@ export default {
       popoverVibsile.value = !popoverVibsile.value;
     };
     const updateSelected = newSelected => {
-      console.log("newSelected:", newSelected);
       context.emit("update:selected", newSelected);
     };
     const result = computed(() => {
@@ -74,6 +73,7 @@ $border-radius: 4px;
     background: white;
     height: 200px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+    overflow: auto;
   }
 }
 </style>

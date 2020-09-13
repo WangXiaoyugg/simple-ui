@@ -4,11 +4,32 @@
     <h2>示例1</h2>
     <Cascader :dataSource="dataSource" popoverHeight="200px" v-model:selected="selected"></Cascader>
   </section>
+  <section>
+    <h2>示例2</h2>
+    <Cascader
+      :dataSource="dataSource1"
+      popoverHeight="200px"
+      v-model:selected="selected1"
+      @update:selected="onUpdateSelected"
+    ></Cascader>
+  </section>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import Cascader from "../lib/Cascader.vue";
+import db from "../db/index";
+
+function ajax(parent_id = 0) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let result = db.filter(item => item.parent_id === parent_id);
+
+      resolve(result);
+    }, 2000);
+  });
+}
+
 export default {
   components: {
     Cascader
@@ -36,15 +57,40 @@ export default {
         ]
       }
     ]);
+    const dataSource1 = ref([]);
     const selected = ref([]);
+    const selected1 = ref([]);
+
+    onMounted(() => {
+      ajax().then(result => {
+        dataSource1.value = result;
+      });
+    });
+
+    const onUpdateSelected = () => {
+      console.log(selected1.value[0].id);
+      ajax(selected1.value[0].id).then(result => {
+        let lastSelected = dataSource1.value.filter(
+          item => item.id === selected1.value[0].id
+        )[0];
+        lastSelected.children = result;
+        // dataSource1[0].children = result;
+      });
+    };
 
     return {
       dataSource,
-      selected
+      selected,
+      selected1,
+      dataSource1,
+      onUpdateSelected
     };
   }
 };
 </script>
 
 <style lang="scss" scoped>
+section {
+  margin-bottom: 30px;
+}
 </style>
