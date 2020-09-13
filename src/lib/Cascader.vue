@@ -27,6 +27,9 @@ export default {
     selected: {
       type: Array,
       default: () => []
+    },
+    loadData: {
+      type: Function
     }
   },
   components: {
@@ -39,6 +42,45 @@ export default {
     };
     const updateSelected = newSelected => {
       context.emit("update:selected", newSelected);
+      let lastItem = newSelected[newSelected.length - 1];
+      let simplest = (children, id) => {
+        return children.filter(item => item.id === id)[0];
+      };
+      let complex = (children, id) => {
+        let noChildren = [];
+        let hasChildren = [];
+        children.forEach(item => {
+          if (item.children) {
+            hasChildren.push(item);
+          } else {
+            noChildren.push(item);
+          }
+        });
+        let found = simplest(noChildren, id);
+        if (found) {
+          return found;
+        } else {
+          found = simplest(hasChildren, id);
+          if (found) {
+            return found;
+          } else {
+            for (let i = 0; i < hasChildren.length; i++) {
+              found = complex(hasChildren[i].children, id);
+              if (found) {
+                return found;
+              }
+            }
+            return undefined;
+          }
+        }
+      };
+      let updateSource = result => {
+        console.log("result:", result, lastItem.id);
+        let toUpdate = complex(props.dataSource, lastItem.id);
+        toUpdate.children = result;
+      };
+
+      props.loadData && props.loadData(lastItem, updateSource);
     };
     const result = computed(() => {
       return props.selected.map(item => item.name).join("/");

@@ -10,7 +10,7 @@
       :dataSource="dataSource1"
       popoverHeight="200px"
       v-model:selected="selected1"
-      @update:selected="onUpdateSelected"
+      :loadData="loadData"
     ></Cascader>
   </section>
 </template>
@@ -24,9 +24,8 @@ function ajax(parent_id = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let result = db.filter(item => item.parent_id === parent_id);
-
       resolve(result);
-    }, 2000);
+    }, 300);
   });
 }
 
@@ -68,22 +67,28 @@ export default {
     });
 
     const onUpdateSelected = () => {
-      console.log(selected1.value[0].id);
       ajax(selected1.value[0].id).then(result => {
         let lastSelected = dataSource1.value.filter(
           item => item.id === selected1.value[0].id
         )[0];
         lastSelected.children = result;
-        // dataSource1[0].children = result;
+      });
+    };
+
+    const loadData = (item, updateSource) => {
+      let { name, id, parent_id } = item;
+      ajax(id).then(result => {
+        updateSource(result);
       });
     };
 
     return {
-      dataSource,
       selected,
       selected1,
+      dataSource,
       dataSource1,
-      onUpdateSelected
+      onUpdateSelected,
+      loadData
     };
   }
 };
