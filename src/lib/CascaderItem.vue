@@ -2,9 +2,9 @@
   <div class="cascader-item" :style="{height:height}">
     <div class="left">
       <div v-for="item in items" class="label" @click="onClickLabel(item)">
-        {{item.name}}
+        <span class="name">{{item.name}}</span>
         <svg
-          v-if="item.children"
+          v-if="rightArrowVisible(item)"
           class="icon"
           t="1599908965403"
           viewBox="0 0 1024 1024"
@@ -51,16 +51,25 @@ export default {
     level: {
       type: Number,
       default: 0
+    },
+    loadData: {
+      type: Function
     }
   },
   setup(props, context) {
     const leftSelected = ref(null);
     const rightItems = computed(() => {
-      let currentSelected = props.selected[props.level];
-      if (currentSelected) {
-        return currentSelected.children;
-      } else {
-        return null;
+      if (props.selected[props.level]) {
+        let selected = props.items.filter(
+          item => item.name === props.selected[props.level].name
+        );
+        if (
+          selected &&
+          selected[0].children &&
+          selected[0].children.length > 0
+        ) {
+          return selected[0].children;
+        }
       }
     });
 
@@ -73,12 +82,16 @@ export default {
     const updateSelected = newSelected => {
       context.emit("update:selected", newSelected);
     };
+    const rightArrowVisible = item => {
+      return props.loadData ? !item.isLeaf : item.children;
+    };
 
     return {
       leftSelected,
       rightItems,
       onClickLabel,
-      updateSelected
+      updateSelected,
+      rightArrowVisible
     };
   }
 };
@@ -94,19 +107,29 @@ export default {
   .left {
     height: 100%;
     padding: 0.3em 0;
+    overflow: auto;
   }
   .right {
     border-left: 1px solid rgba(152, 152, 152, 0.5);
     height: 100%;
   }
   .label {
-    padding: 0.3em 1em;
+    padding: 0.5em 1em;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    &:hover {
+      background: #eee;
+    }
+    .name {
+      margin-right: 1em;
+      user-select: none;
+    }
     .icon {
       width: 16px;
       height: 16px;
-      margin-left: 10px;
+      margin-left: auto;
     }
   }
 }

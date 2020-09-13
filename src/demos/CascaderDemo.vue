@@ -7,7 +7,7 @@
   <section>
     <h2>示例2</h2>
     <Cascader
-      :dataSource="dataSource1"
+      v-model:dataSource="dataSource1"
       popoverHeight="200px"
       v-model:selected="selected1"
       :loadData="loadData"
@@ -24,6 +24,13 @@ function ajax(parent_id = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let result = db.filter(item => item.parent_id === parent_id);
+      result.forEach(node => {
+        if (db.filter(item => item.parent_id === node.id).length > 0) {
+          node.isLeaf = false;
+        } else {
+          node.isLeaf = true;
+        }
+      });
       resolve(result);
     }, 300);
   });

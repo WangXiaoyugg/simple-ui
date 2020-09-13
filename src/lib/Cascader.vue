@@ -7,6 +7,7 @@
         :height="popoverHeight"
         :selected="selected"
         @update:selected="updateSelected"
+        :loadData="loadData"
       ></cascader-item>
     </div>
   </div>
@@ -76,11 +77,15 @@ export default {
       };
       let updateSource = result => {
         console.log("result:", result, lastItem.id);
-        let toUpdate = complex(props.dataSource, lastItem.id);
+        let copy = JSON.parse(JSON.stringify(props.dataSource));
+        let toUpdate = complex(copy, lastItem.id);
         toUpdate.children = result;
+        context.emit("update:dataSource", copy);
       };
 
-      props.loadData && props.loadData(lastItem, updateSource);
+      if (!lastItem.isLeaf && props.loadData) {
+        props.loadData(lastItem, updateSource);
+      }
     };
     const result = computed(() => {
       return props.selected.map(item => item.name).join("/");
@@ -114,8 +119,8 @@ $border-radius: 4px;
     left: 0;
     background: white;
     height: 200px;
+    z-index: 1;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
-    overflow: auto;
   }
 }
 </style>
