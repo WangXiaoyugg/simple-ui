@@ -2,13 +2,7 @@
   <h1>Cascader示例</h1>
   <section>
     <h2>示例1</h2>
-    <p>{{selected}}</p>
-    <Cascader
-      :dataSource="dataSource"
-      popoverHeight="200px"
-      :selected="selected"
-      @update:selected="selected = $event"
-    ></Cascader>
+    <Cascader :dataSource="dataSource" popoverHeight="200px" v-model:selected="selected"></Cascader>
   </section>
 </template>
 

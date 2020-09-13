@@ -1,8 +1,6 @@
 <template>
   <div class="cascader">
-    <div class="trigger" @click="toggle">
-      <slot></slot>
-    </div>
+    <div class="trigger" @click="toggle">{{result|| '&nbsp;'}}</div>
     <div class="popover" v-if="popoverVibsile">
       <cascader-item
         :items="dataSource"
@@ -43,26 +41,35 @@ export default {
       console.log("newSelected:", newSelected);
       context.emit("update:selected", newSelected);
     };
+    const result = computed(() => {
+      return props.selected.map(item => item.name).join("/");
+    });
     return {
       popoverVibsile,
       toggle,
-      updateSelected
+      updateSelected,
+      result
     };
   }
 };
 </script>
 
 <style scoped lang="scss">
+$border-radius: 4px;
 .cascader {
   position: relative;
   > .trigger {
     height: 32px;
-    width: 200px;
-    border: 1px solid #666;
+    display: inline-flex;
+    padding: 0.2em 1em;
+    min-width: 10em;
+    border: 1px solid grey;
+    border-radius: $border-radius;
   }
   > .popover {
     position: absolute;
     top: 100%;
+    margin-top: 6px;
     left: 0;
     background: white;
     height: 200px;
