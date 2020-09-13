@@ -1,7 +1,8 @@
 <template>
   <div class="cascader-item" :style="{height:height}">
     <div class="left">
-      <div v-for="item in items" class="label" @click="leftSelected=item">
+      {{level}}
+      <div v-for="item in items" class="label" @click="onClickLabel(item)">
         {{item.name}}
         <svg
           v-if="item.children"
@@ -22,7 +23,13 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <cascader-item :items="rightItems" :height="height"></cascader-item>
+      <cascader-item
+        :items="rightItems"
+        :height="height"
+        :selected="selected"
+        :level="level+1"
+        @update:selected="updateSelected"
+      ></cascader-item>
     </div>
   </div>
 </template>
@@ -37,20 +44,42 @@ export default {
     },
     height: {
       type: String
+    },
+    selected: {
+      type: Array,
+      default: () => []
+    },
+    level: {
+      type: Number,
+      default: 0
     }
   },
-  setup() {
+  setup(props, context) {
     const leftSelected = ref(null);
     const rightItems = computed(() => {
-      if (leftSelected.value && leftSelected.value.children) {
-        return leftSelected.value.children;
+      let currentSelected = props.selected[props.level];
+      if (currentSelected) {
+        return currentSelected.children;
       } else {
         return null;
       }
     });
+
+    const onClickLabel = item => {
+      const copy = JSON.parse(JSON.stringify(props.selected));
+      copy[props.level] = item;
+      copy.splice(props.level + 1);
+      context.emit("update:selected", copy);
+    };
+    const updateSelected = newSelected => {
+      context.emit("update:selected", newSelected);
+    };
+
     return {
       leftSelected,
-      rightItems
+      rightItems,
+      onClickLabel,
+      updateSelected
     };
   }
 };

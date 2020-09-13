@@ -2,7 +2,13 @@
   <h1>Cascader示例</h1>
   <section>
     <h2>示例1</h2>
-    <Cascader :dataSource="dataSource" popoverHeight="200px"></Cascader>
+    <p>{{selected}}</p>
+    <Cascader
+      :dataSource="dataSource"
+      popoverHeight="200px"
+      :selected="selected"
+      @update:selected="selected = $event"
+    ></Cascader>
   </section>
 </template>
 
@@ -36,9 +42,11 @@ export default {
         ]
       }
     ]);
+    const selected = ref([]);
 
     return {
-      dataSource
+      dataSource,
+      selected
     };
   }
 };

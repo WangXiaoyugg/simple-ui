@@ -4,7 +4,12 @@
       <slot></slot>
     </div>
     <div class="popover" v-if="popoverVibsile">
-      <cascader-item :items="dataSource" :height="popoverHeight"></cascader-item>
+      <cascader-item
+        :items="dataSource"
+        :height="popoverHeight"
+        :selected="selected"
+        @update:selected="updateSelected"
+      ></cascader-item>
     </div>
   </div>
 </template>
@@ -20,19 +25,28 @@ export default {
     },
     popoverHeight: {
       type: String
+    },
+    selected: {
+      type: Array,
+      default: () => []
     }
   },
   components: {
     CascaderItem
   },
-  setup() {
+  setup(props, context) {
     const popoverVibsile = ref(false);
     const toggle = () => {
       popoverVibsile.value = !popoverVibsile.value;
     };
+    const updateSelected = newSelected => {
+      console.log("newSelected:", newSelected);
+      context.emit("update:selected", newSelected);
+    };
     return {
       popoverVibsile,
-      toggle
+      toggle,
+      updateSelected
     };
   }
 };
