@@ -28,7 +28,7 @@ Or
 npm run dev
 ```
 
-4. After the startup is complete, open a browser and visit http://localhost:8080, if you need to change the port, you can edit the dev script of package.json 
+4. After the startup is completed, open a browser and visit http://localhost:8080, if you need to change the port, you can edit the dev script of package.json 
 
 ```json
 {
@@ -47,4 +47,5 @@ npm run dev
 - [x] Row/Col ✅
 - [x] Layout/Header/Aside/Content/Footer ✅
 - [x] Popover✅
-
+- [x] Collapse✅
+- [x] Cascader✅
