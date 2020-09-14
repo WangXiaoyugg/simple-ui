@@ -8,6 +8,7 @@
         :selected="selected"
         @update:selected="updateSelected"
         :loadData="loadData"
+        :loadingItem="loadingItem"
       ></cascader-item>
     </div>
   </div>
@@ -42,12 +43,14 @@ export default {
   },
   setup(props, context) {
     const popoverVibsile = ref(false);
+    const loadingItem = ref({});
     const toggle = () => {
       popoverVibsile.value = !popoverVibsile.value;
     };
     const close = () => {
       popoverVibsile.value = false;
     };
+
     const updateSelected = newSelected => {
       context.emit("update:selected", newSelected);
       let lastItem = newSelected[newSelected.length - 1];
@@ -85,6 +88,7 @@ export default {
 
       let updateSource = result => {
         console.log("result:", result);
+        loadingItem.value = {};
         let copy = JSON.parse(JSON.stringify(props.dataSource));
         let toUpdate = complex(copy, lastItem.id);
         toUpdate.children = result;
@@ -93,6 +97,7 @@ export default {
 
       if (!lastItem.isLeaf && props.loadData) {
         props.loadData(lastItem, updateSource);
+        loadingItem.value = lastItem;
       }
     };
     const result = computed(() => {
@@ -103,7 +108,8 @@ export default {
       toggle,
       updateSelected,
       result,
-      close
+      close,
+      loadingItem
     };
   }
 };
