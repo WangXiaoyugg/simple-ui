@@ -125,11 +125,14 @@ export default {
     });
     onUnmounted(() => {
       if (trigger === "click") {
-        popoverWrapper.value.removeEventListener("click", onPopoverClick);
+        popoverWrapper.value &&
+          popoverWrapper.value.removeEventListener("click", onPopoverClick);
       } else if (trigger === "hover") {
         console.log("hover");
-        popoverWrapper.value.removeEventListener("mouseenter", open);
-        popoverWrapper.value.removeEventListener("mouseleave", close);
+        popoverWrapper.value &&
+          popoverWrapper.value.removeEventListener("mouseenter", open);
+        popoverWrapper.value &&
+          popoverWrapper.value.removeEventListener("mouseleave", close);
       }
     });
 
