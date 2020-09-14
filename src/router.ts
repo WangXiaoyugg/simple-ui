@@ -11,6 +11,7 @@ import LayoutDemo from './demos/LayoutDemo.vue'
 import PopoverDemo from './demos/PopoverDemo.vue'
 import CollapseDemo from './demos/CollapseDemo.vue'
 import CascaderDemo from './demos/CascaderDemo.vue'
+import PagerDemo from './demos/PagerDemo.vue'
 
 
 
@@ -31,6 +32,8 @@ export const router = createRouter({
         { path: 'popover', component: PopoverDemo },
         { path: 'collapse', component: CollapseDemo },
         { path: 'cascader', component: CascaderDemo },
+        { path: 'pager', component: PagerDemo },
+
       ]
     },
   ]

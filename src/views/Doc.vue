@@ -32,6 +32,9 @@
           <li>
             <router-link to="/doc/cascader">Cascader组件</router-link>
           </li>
+          <li>
+            <router-link to="/doc/pager">Pager组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>
