@@ -84,7 +84,6 @@ export default {
       context.emit("update:selected", newSelected);
     };
     const rightArrowVisible = item => {
-      console.log("loadData", props.loadData);
       return props.loadData ? !item.isLeaf : item.children;
     };
 

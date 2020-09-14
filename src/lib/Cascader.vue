@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader">
+  <div class="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">{{result|| '&nbsp;'}}</div>
     <div class="popover" v-if="popoverVibsile">
       <cascader-item
@@ -16,8 +16,12 @@
 <script lang="ts">
 import { ref, computed } from "vue";
 import CascaderItem from "./CascaderItem.vue";
+import ClickOutside from "./click-outside.js";
 export default {
   name: "Cascader",
+  directives: {
+    ClickOutside
+  },
   props: {
     dataSource: {
       type: Array
@@ -40,6 +44,9 @@ export default {
     const popoverVibsile = ref(false);
     const toggle = () => {
       popoverVibsile.value = !popoverVibsile.value;
+    };
+    const close = () => {
+      popoverVibsile.value = false;
     };
     const updateSelected = newSelected => {
       context.emit("update:selected", newSelected);
@@ -95,7 +102,8 @@ export default {
       popoverVibsile,
       toggle,
       updateSelected,
-      result
+      result,
+      close
     };
   }
 };
