@@ -11,7 +11,7 @@
     <h2>示例2</h2>
     <s-icon name="left-arrow" :style="{fontSize: '20px'}"></s-icon>
     <s-icon name="right-arrow" :style="{fontSize: '32px', color: 'red'}"></s-icon>
-    <s-icon name="loading" :style="{fontSize: '32px', color: 'green'}"></s-icon>
+    <s-icon name="loading" @click="onClick" :style="{fontSize: '32px', color: 'green'}"></s-icon>
   </section>
 </template>
 
@@ -20,6 +20,14 @@ import SIcon from "../lib/Icon.vue";
 export default {
   components: {
     SIcon
+  },
+  setup() {
+    const onClick = e => {
+      console.log("e", e);
+    };
+    return {
+      onClick
+    };
   }
 };
 </script>

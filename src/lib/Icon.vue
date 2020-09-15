@@ -1,12 +1,13 @@
 <template>
   <i :style="style">
-    <svg class="simple-icon" @click="onClick">
+    <svg class="simple-icon">
       <use :xlink:href="`#icon-${name}`" />
     </svg>
   </i>
 </template>
 
 <script lang="ts">
+import "./svg.js";
 export default {
   props: {
     name: {
@@ -16,14 +17,6 @@ export default {
     style: {
       type: Object
     }
-  },
-  setup(props, context) {
-    const onClick = e => {
-      context.emit("click", e);
-    };
-    return {
-      onClick
-    };
   }
 };
 </script>

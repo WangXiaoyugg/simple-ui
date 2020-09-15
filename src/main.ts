@@ -1,6 +1,6 @@
 import "./lib/simple.scss"
 import './index.scss'
-import './lib/svg.js'
+
 
 import { createApp } from 'vue'
 import App from './App.vue'
