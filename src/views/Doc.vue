@@ -9,6 +9,9 @@
             <router-link to="/doc/switch">Switch组件</router-link>
           </li>
           <li>
+            <router-link to="/doc/icon">Icon组件</router-link>
+          </li>
+          <li>
             <router-link to="/doc/button">Button组件</router-link>
           </li>
           <li>

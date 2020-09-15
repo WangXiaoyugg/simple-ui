@@ -12,6 +12,7 @@ import PopoverDemo from './demos/PopoverDemo.vue'
 import CollapseDemo from './demos/CollapseDemo.vue'
 import CascaderDemo from './demos/CascaderDemo.vue'
 import PagerDemo from './demos/PagerDemo.vue'
+import IconDemo from './demos/IconDemo.vue'
 
 
 
@@ -24,6 +25,7 @@ export const router = createRouter({
       path: '/doc', component: Doc, children: [
         { path: '', component: DocDemo },
         { path: 'switch', component: SwitchDemo },
+        { path: 'icon', component: IconDemo },
         { path: 'button', component: ButtonDemo },
         { path: 'dialog', component: DialogDemo },
         { path: 'tabs', component: TabsDemo },
