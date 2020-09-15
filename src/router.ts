@@ -13,6 +13,7 @@ import CollapseDemo from './demos/CollapseDemo.vue'
 import CascaderDemo from './demos/CascaderDemo.vue'
 import PagerDemo from './demos/PagerDemo.vue'
 import IconDemo from './demos/IconDemo.vue'
+import InputDemo from './demos/InputDemo.vue'
 
 
 
@@ -27,6 +28,8 @@ export const router = createRouter({
         { path: 'switch', component: SwitchDemo },
         { path: 'icon', component: IconDemo },
         { path: 'button', component: ButtonDemo },
+        { path: 'input', component: InputDemo },
+
         { path: 'dialog', component: DialogDemo },
         { path: 'tabs', component: TabsDemo },
         { path: 'grid', component: RowAndColDemo },

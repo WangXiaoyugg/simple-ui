@@ -15,6 +15,9 @@
             <router-link to="/doc/button">Button组件</router-link>
           </li>
           <li>
+            <router-link to="/doc/input">Input组件</router-link>
+          </li>
+          <li>
             <router-link to="/doc/dialog">Dialog组件</router-link>
           </li>
           <li>
