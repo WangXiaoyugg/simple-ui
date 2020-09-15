@@ -6,7 +6,6 @@
 
 ```git
 git clone git@github.com:WangXiaoyugg/simple-ui.git
-cd my-project
 ```
 
 2. Installation dependence.
@@ -49,3 +48,6 @@ npm run dev
 - [x] Popover✅
 - [x] Collapse✅
 - [x] Cascader✅
+- [x] Icon✅
+- [x] Pager✅
+- [x] Input✅
